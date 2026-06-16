@@ -33,45 +33,45 @@
 
     /* HERO */
     .hero {
-      padding: 3rem 5rem 2.5rem;
+      padding: 4.5rem 5rem 3.5rem;
       border-bottom: 0.5px solid rgba(255,255,255,0.08);
-      max-width: 1440px;
+      max-width: 1280px;
       margin: 0 auto;
       width: 100%;
     }
     .eyebrow {
-      font-size: 12px;
+      font-size: 13px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.35);
       margin-bottom: 1.25rem;
     }
     h1 {
-      font-size: clamp(36px, 4.5vw, 58px);
+      font-size: clamp(42px, 5.2vw, 78px);
       font-weight: 500;
-      line-height: 1.2;
-      margin-bottom: 1rem;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
       color: #fff;
     }
     h1 .yellow { color: #F5C75A; }
     h1 .purple { color: #c084fc; }
     .hero-sub {
-      font-size: 20px;
+      font-size: clamp(18px, 1.5vw, 26px);
       color: rgba(255,255,255,0.45);
-      line-height: 1.7;
-      max-width: 640px;
+      line-height: 1.6;
+      max-width: 760px;
     }
 
     /* SECTIONS */
     section {
-      padding: 2rem 5rem;
+      padding: 2.75rem 5rem;
       border-bottom: 0.5px solid rgba(255,255,255,0.08);
-      max-width: 1440px;
+      max-width: 1280px;
       margin: 0 auto;
       width: 100%;
     }
     .section-label {
-      font-size: 12px;
+      font-size: 13px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.3);
@@ -112,7 +112,7 @@
       gap: 8px;
     }
     .proj-title {
-      font-size: 19px;
+      font-size: 22px;
       font-weight: 500;
       color: #fff;
       margin-bottom: 8px;
@@ -127,9 +127,9 @@
     }
     .proj-card.open .expand-icon { transform: rotate(45deg); }
     .proj-short {
-      font-size: 16px;
+      font-size: 17px;
       color: rgba(255,255,255,0.42);
-      line-height: 1.65;
+      line-height: 1.6;
     }
     .proj-expanded {
       display: none;
@@ -139,7 +139,7 @@
     }
     .proj-card.open .proj-expanded { display: block; }
     .proj-long {
-      font-size: 16px;
+      font-size: 17px;
       color: rgba(255,255,255,0.42);
       line-height: 1.75;
       margin-bottom: 12px;
@@ -177,7 +177,7 @@
       padding: 1.1rem 1.3rem;
     }
     .skill-group-title {
-      font-size: 12px;
+      font-size: 13px;
       color: rgba(255,255,255,0.3);
       margin-bottom: 14px;
       letter-spacing: 0.05em;
@@ -185,7 +185,7 @@
     }
     .skill-pill {
       display: inline-block;
-      font-size: 15px;
+      font-size: 17px;
       color: rgba(255,255,255,0.5);
       margin-right: 8px;
       margin-bottom: 7px;
@@ -193,7 +193,7 @@
 
     /* FOOTER */
     footer {
-      max-width: 1440px;
+      max-width: 1280px;
       margin: 0 auto;
       margin-top: auto;
       padding: 1.75rem 5rem;
@@ -205,7 +205,7 @@
       gap: 1rem;
     }
     .footer-brand {
-      font-size: 13px;
+      font-size: 14px;
       color: rgba(255,255,255,0.25);
     }
     .footer-links {
@@ -215,7 +215,7 @@
       flex-wrap: wrap;
     }
     .footer-link {
-      font-size: 13px;
+      font-size: 14px;
       color: rgba(255,255,255,0.35);
       text-decoration: none;
     }
@@ -224,7 +224,7 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
       background: linear-gradient(90deg, #B044F0, #F0A020);
       color: #fff;
@@ -328,16 +328,16 @@
     /* MOBILE */
     @media (max-width: 640px) {
       nav { justify-content: center; padding: 1rem 1.25rem; }
-      nav svg { width: 180px; height: auto; display: block; margin: 0 auto; }
-      .hero { padding: 2rem 1.5rem 2rem; }
-      h1 { font-size: clamp(28px, 8vw, 38px); }
-      .hero-sub { font-size: 16px; }
-      section { padding: 1.75rem 1.5rem; }
+      nav svg { width: 190px; height: auto; display: block; margin: 0 auto; }
+      .hero { padding: 2.5rem 1.5rem 2rem; }
+      h1 { font-size: clamp(30px, 8.5vw, 42px); }
+      .hero-sub { font-size: 17px; }
+      section { padding: 2rem 1.5rem; }
       .proj-grid { grid-template-columns: 1fr; }
-      .proj-title { font-size: 16px; }
-      .proj-short { font-size: 14px; }
+      .proj-title { font-size: 19px; }
+      .proj-short { font-size: 16px; }
       .skill-grid { grid-template-columns: 1fr; }
-      .skill-pill { font-size: 14px; }
+      .skill-pill { font-size: 16px; }
       footer { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
       .field-row { grid-template-columns: 1fr; }
     }
@@ -416,15 +416,15 @@
         </div>
         <p class="proj-short">Private placement infrastructure digitizing syndicate workflows, settlement, and investor reporting on-chain.</p>
         <div class="proj-expanded">
-          <p class="proj-long">Private market syndication infrastructure powered by tokenization. Fund managers tokenize investor allocations, automate settlement and reconciliation workflows via atomic settlement, and deliver real-time portfolio visibility — without restructuring the underlying legal framework. Investor capital settles in USDC, triggering restricted token issuance mapped to each allocation. At liquidity event, tokens are redeemed and proceeds distributed — creating a fully auditable investment lifecycle across pre-IPO syndicate deals.</p>
-          <p class="proj-meta">Architect & PM · Ethereum / USDC</p>
+          <p class="proj-long">Private market syndication infrastructure powered by tokenization. The platform digitizes private placement workflows — from investor onboarding and eligibility controls through USDC-denominated token issuance, atomic settlement, and automated reconciliation. Multi-sig authorization via Safe (Gnosis Safe) governs transaction approvals, enabling institutional-grade controls over asset movement without custodial risk.</p>
+          <p class="proj-meta">Ethereum · USDC · Safe multi-sig · Solidity</p>
         </div>
       </div>
 
       <div class="proj-card" onclick="this.classList.toggle('open')">
         <div class="proj-tags">
           <span class="tag tag-yellow">Research</span>
-          <span class="tag tag-green">Valuation</span>
+          <span class="tag tag-yellow">Valuation</span>
         </div>
         <div class="proj-header">
           <p class="proj-title">Layer 1 Blockchain Valuation</p>
@@ -432,8 +432,8 @@
         </div>
         <p class="proj-short">Institutional-grade valuation framework for Layer 1 blockchains combining traditional finance methods.</p>
         <div class="proj-expanded">
-          <p class="proj-long">Institutional-grade valuation methodology for Layer 1 blockchains, combining DCF flywheel modeling with Metcalfe's Law applied to on-chain activity data. The framework translates traditional asset management analysis into crypto-native fundamentals — enabling rigorous evaluation of blockchain networks as investable assets.</p>
-          <p class="proj-meta">MSF · Johns Hopkins · Financial Modeling & Valuation</p>
+          <p class="proj-long">Institutional-grade valuation methodology for Layer 1 blockchain networks, combining Metcalfe's Law network value models with traditional DCF analysis, fixed-income yield comparisons, and L1 tokenomics. Designed to give institutional investors a rigorous framework for assessing blockchain infrastructure value using familiar financial tools.</p>
+          <p class="proj-meta">Research · Financial Modeling · Yield Analysis</p>
         </div>
       </div>
 
@@ -476,37 +476,40 @@
     <span class="footer-brand">OMDAO LLC · Wyoming · Est. 2022</span>
     <div class="footer-links">
       <a href="https://linkedin.com/in/caterineh" target="_blank" class="footer-link">LinkedIn</a>
-
-      <button class="contact-btn" onclick="document.getElementById('modal').classList.add('open')">
-        ✉ Contact us
-      </button>
+      <a href="#" class="contact-btn" onclick="document.getElementById('modal').classList.add('open'); return false;">✦ Contact us</a>
     </div>
   </footer>
 
   <!-- CONTACT MODAL -->
-  <div class="modal-overlay" id="modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-overlay" id="modal">
     <div class="modal">
-      <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕</button>
-      <p class="modal-title">Get in touch.</p>
-      <p class="modal-sub">Open to collaborations, advisory, and roles in digital asset infrastructure.</p>
+      <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">×</button>
+      <p class="modal-title">Get in touch</p>
+      <p class="modal-sub">Interested in working together? We'll get back to you shortly.</p>
       <form id="contact-form" action="https://formspree.io/f/xqeojnpb" method="POST">
         <div class="field-row">
           <div class="field">
-            <label class="field-label" for="name">Name</label>
-            <input class="field-input" id="name" name="name" type="text" placeholder="Your name" required />
+            <label class="field-label">First name</label>
+            <input class="field-input" type="text" name="first_name" placeholder="Jane" required />
           </div>
           <div class="field">
-            <label class="field-label" for="email">Email</label>
-            <input class="field-input" id="email" name="email" type="email" placeholder="you@email.com" required />
+            <label class="field-label">Last name</label>
+            <input class="field-input" type="text" name="last_name" placeholder="Smith" />
           </div>
         </div>
         <div class="field">
-          <label class="field-label" for="message">Message</label>
-          <textarea class="field-input" id="message" name="message" rows="4" placeholder="What are you working on?" required></textarea>
+          <label class="field-label">Email</label>
+          <input class="field-input" type="email" name="email" placeholder="jane@company.com" required />
+        </div>
+        <div class="field">
+          <label class="field-label">Message</label>
+          <textarea class="field-input" name="message" rows="4" placeholder="Tell us about your project..."></textarea>
         </div>
         <button type="submit" class="submit-btn">Send message</button>
       </form>
-      <p class="form-success" id="form-success">✓ Message sent! We'll be in touch soon.</p>
+      <div class="form-success" id="form-success">
+        ✓ Message sent! We'll be in touch soon.
+      </div>
     </div>
   </div>
 
@@ -522,8 +525,8 @@
       }
     });
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') document.getElementById('modal').classList.remove('open');
+    document.getElementById('modal').addEventListener('click', function(e) {
+      if (e.target === this) this.classList.remove('open');
     });
   </script>
 
