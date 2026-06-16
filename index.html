@@ -47,7 +47,7 @@
       margin-bottom: 1.25rem;
     }
     h1 {
-      font-size: clamp(28px, 3.5vw, 46px);
+      font-size: clamp(36px, 4.5vw, 58px);
       font-weight: 500;
       line-height: 1.2;
       margin-bottom: 1rem;
@@ -56,7 +56,7 @@
     h1 .yellow { color: #F5C75A; }
     h1 .purple { color: #c084fc; }
     .hero-sub {
-      font-size: 18px;
+      font-size: 20px;
       color: rgba(255,255,255,0.45);
       line-height: 1.7;
       max-width: 640px;
@@ -112,7 +112,7 @@
       gap: 8px;
     }
     .proj-title {
-      font-size: 17px;
+      font-size: 19px;
       font-weight: 500;
       color: #fff;
       margin-bottom: 8px;
@@ -127,7 +127,7 @@
     }
     .proj-card.open .expand-icon { transform: rotate(45deg); }
     .proj-short {
-      font-size: 14px;
+      font-size: 16px;
       color: rgba(255,255,255,0.42);
       line-height: 1.65;
     }
@@ -139,7 +139,7 @@
     }
     .proj-card.open .proj-expanded { display: block; }
     .proj-long {
-      font-size: 14px;
+      font-size: 16px;
       color: rgba(255,255,255,0.42);
       line-height: 1.75;
       margin-bottom: 12px;
@@ -185,7 +185,7 @@
     }
     .skill-pill {
       display: inline-block;
-      font-size: 13px;
+      font-size: 15px;
       color: rgba(255,255,255,0.5);
       margin-right: 8px;
       margin-bottom: 7px;
@@ -327,10 +327,17 @@
 
     /* MOBILE */
     @media (max-width: 640px) {
-      .hero { padding: 3rem 1.5rem 2.5rem; }
-      section { padding: 2rem 1.5rem; }
+      nav { justify-content: center; padding: 1rem 1.25rem; }
+      nav svg { width: 180px; height: auto; display: block; margin: 0 auto; }
+      .hero { padding: 2rem 1.5rem 2rem; }
+      h1 { font-size: clamp(28px, 8vw, 38px); }
+      .hero-sub { font-size: 16px; }
+      section { padding: 1.75rem 1.5rem; }
       .proj-grid { grid-template-columns: 1fr; }
+      .proj-title { font-size: 16px; }
+      .proj-short { font-size: 14px; }
       .skill-grid { grid-template-columns: 1fr; }
+      .skill-pill { font-size: 14px; }
       footer { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
       .field-row { grid-template-columns: 1fr; }
     }
@@ -391,7 +398,7 @@
         <div class="proj-expanded">
           <p class="proj-long">Optus aggregates liquidity across decentralized exchanges on the TON blockchain, routing orders to deliver best-execution pricing and minimize slippage. Large orders are split across multiple venues to maximize price efficiency — similar to smart order routing in traditional markets. The protocol removes gas friction, making execution seamless for any trader type. Built above the DEX layer, Optus includes an analytics dashboard tracking live liquidity pool positions, trading volume, and on-chain activity across the TON network.</p>
           <div class="proj-links">
-            <a href="#" class="proj-link">📄 Press coverage</a>
+            <a href="https://medium.com/@aldisda/the-best-features-of-optus-the-first-dex-aggregator-on-ton-network-ff6cc37fb0e9" target="_blank" class="proj-link">📄 Press coverage</a>
             <a href="#" class="proj-link yellow">🏆 3rd place · 30K TON + AWS</a>
           </div>
           <p class="proj-meta">PM Lead & Co-founder · team of 5–10</p>
