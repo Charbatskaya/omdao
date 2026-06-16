@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OMDAO — Blockchain Infrastructure for Institutional Standards</title>
+  <meta name="description" content="Designing tokenization and custody infrastructure where regulated finance meets blockchain." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: #0D0B1A;
+      background-image:
+        radial-gradient(ellipse at 10% 60%, rgba(130,65,15,0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 90% 20%, rgba(90,35,180,0.38) 0%, transparent 55%);
+      background-attachment: fixed;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      border-bottom: 0.5px solid rgba(255,255,255,0.08);
+    }
+    nav svg { display: block; }
+
+    /* HERO */
+    .hero {
+      padding: 3rem 5rem 2.5rem;
+      border-bottom: 0.5px solid rgba(255,255,255,0.08);
+      max-width: 1440px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 1.25rem;
+    }
+    h1 {
+      font-size: clamp(28px, 3.5vw, 46px);
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    h1 .yellow { color: #F5C75A; }
+    h1 .purple { color: #c084fc; }
+    .hero-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 2rem 5rem;
+      border-bottom: 0.5px solid rgba(255,255,255,0.08);
+      max-width: 1440px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .section-label {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 1.25rem;
+    }
+
+    /* PROJECT GRID */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .proj-card {
+      background: rgba(26,20,50,0.7);
+      border: 0.5px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 1.4rem 1.6rem;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .proj-card:hover { border-color: rgba(192,132,252,0.4); }
+    .proj-tags { margin-bottom: 14px; }
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 11px;
+      border-radius: 4px;
+      margin-right: 6px;
+    }
+    .tag-purple { background: rgba(192,132,252,0.18); color: #c084fc; }
+    .tag-yellow { background: rgba(245,199,90,0.15); color: #F5C75A; }
+    .tag-green  { background: rgba(29,158,117,0.2);  color: #5DCAA5; }
+    .proj-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .proj-title {
+      font-size: 17px;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .expand-icon {
+      color: rgba(255,255,255,0.25);
+      font-size: 20px;
+      flex-shrink: 0;
+      line-height: 1;
+      transition: transform 0.2s;
+      user-select: none;
+    }
+    .proj-card.open .expand-icon { transform: rotate(45deg); }
+    .proj-short {
+      font-size: 14px;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.65;
+    }
+    .proj-expanded {
+      display: none;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 0.5px solid rgba(255,255,255,0.08);
+    }
+    .proj-card.open .proj-expanded { display: block; }
+    .proj-long {
+      font-size: 14px;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+    .proj-links { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+    .proj-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.07);
+      border: 0.5px solid rgba(255,255,255,0.12);
+      padding: 5px 11px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    .proj-link:hover { border-color: rgba(255,255,255,0.25); }
+    .proj-link.yellow { color: #F5C75A; border-color: rgba(245,199,90,0.25); background: rgba(245,199,90,0.08); }
+    .proj-meta {
+      font-size: 11px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* SKILLS */
+    .skill-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+    .skill-group {
+      background: rgba(26,20,50,0.6);
+      border: 0.5px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 1.1rem 1.3rem;
+    }
+    .skill-group-title {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 14px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .skill-pill {
+      display: inline-block;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-right: 8px;
+      margin-bottom: 7px;
+    }
+
+    /* FOOTER */
+    footer {
+      max-width: 1440px;
+      margin: 0 auto;
+      margin-top: auto;
+      padding: 1.75rem 5rem;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-brand {
+      font-size: 13px;
+      color: rgba(255,255,255,0.25);
+    }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .footer-link {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+    }
+    .footer-link:hover { color: rgba(255,255,255,0.7); }
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      background: linear-gradient(90deg, #B044F0, #F0A020);
+      color: #fff;
+      padding: 9px 22px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .contact-btn:hover { opacity: 0.9; }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: #17132A;
+      border: 0.5px solid rgba(255,255,255,0.14);
+      border-radius: 14px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.35);
+      font-size: 22px;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .modal-close:hover { color: #fff; }
+    .modal-title {
+      font-size: 20px;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+    .modal-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.38);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+    .field-label { font-size: 11px; color: rgba(255,255,255,0.35); }
+    .field-input {
+      background: rgba(255,255,255,0.06);
+      border: 0.5px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 10px 13px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      outline: none;
+      width: 100%;
+      font-family: inherit;
+    }
+    .field-input:focus { border-color: rgba(192,132,252,0.5); }
+    .field-input::placeholder { color: rgba(255,255,255,0.2); }
+    textarea.field-input { resize: none; }
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(90deg, #B044F0, #F0A020);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 11px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      margin-top: 6px;
+      font-family: inherit;
+    }
+    .submit-btn:hover { opacity: 0.9; }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 1rem 0;
+      color: #5DCAA5;
+      font-size: 14px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 640px) {
+      .hero { padding: 3rem 1.5rem 2.5rem; }
+      section { padding: 2rem 1.5rem; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .skill-grid { grid-template-columns: 1fr; }
+      footer { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
+      .field-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <svg width="260" height="74" viewBox="0 0 1310 374" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="OMDAO">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M237.182 245.408C213.117 245.408 189.592 238.21 169.583 224.725C149.575 211.239 133.981 192.072 124.774 169.648C120.461 159.144 117.641 148.146 116.344 136.976H14.0945C10.3564 136.976 6.77143 135.478 4.12819 132.813C1.48495 130.147 0 126.531 0 122.761C0 118.991 1.48495 115.375 4.12819 112.709C6.77143 110.044 10.3564 108.546 14.0945 108.546H116.331C116.708 105.268 117.218 101.998 117.86 98.7448C122.559 74.941 134.152 53.0773 151.173 35.9191C168.193 18.7609 189.877 7.07899 213.481 2.35085C237.085 -2.37729 261.55 0.0607737 283.78 9.35667C306.01 18.6526 325.008 34.3887 338.369 54.5748C349.107 70.7963 355.818 89.3059 358.034 108.546H1295.06C1298.8 108.546 1302.38 110.044 1305.03 112.709C1307.67 115.375 1309.16 118.991 1309.16 122.761C1309.16 126.531 1307.67 130.147 1305.03 132.813C1302.38 135.478 1298.8 136.976 1295.06 136.976H1162.74V242.849C1142.95 242.565 1122.21 258.088 1112 282.367C1099.37 312.332 1107.6 344.515 1130.32 354.238C1153.05 363.961 1181.63 347.472 1194.26 317.507C1206.89 287.542 1198.49 255.359 1175.93 245.636C1175.39 245.397 1174.85 245.219 1174.31 245.042C1173.95 244.924 1173.59 244.805 1173.23 244.669C1168.61 243.816 1167.93 238.13 1173.23 238.13C1210.78 241.883 1231.92 291.692 1217.2 327.571C1210.03 344.649 1196.42 358.153 1179.37 365.111C1162.32 372.068 1143.23 371.911 1126.29 364.672C1109.36 357.434 1095.97 343.707 1089.07 326.513C1082.17 309.318 1082.33 290.064 1089.51 272.985C1094.08 262.133 1101.46 252.716 1110.87 245.716C1120.28 238.716 1131.38 234.388 1143.01 233.183V136.976H1069.44V342.696C1069.48 344.608 1069.71 346.512 1070.11 348.382C1070.55 350.38 1071.29 352.298 1072.31 354.068C1073.25 355.814 1074.43 357.421 1075.81 358.844C1076.37 359.46 1077.05 359.954 1077.8 360.297C1078.56 360.639 1079.38 360.822 1080.2 360.834L1081.9 360.379V363.791H1037.36V360.379H1038.99C1039.81 360.366 1040.62 360.182 1041.37 359.84C1042.11 359.497 1042.78 359.004 1043.33 358.389C1044.73 356.969 1045.92 355.362 1046.88 353.613C1047.88 351.832 1048.62 349.918 1049.08 347.927C1049.46 346.054 1049.66 344.151 1049.7 342.241V305.054H985.996C987.706 327.412 994.373 349.098 1005.5 368.51C1005.84 369.127 1005.96 369.841 1005.83 370.534C1005.71 371.226 1005.35 371.855 1004.82 372.314C1004.3 372.774 1003.63 373.036 1002.93 373.058C1002.23 373.08 1001.55 372.859 1000.99 372.434C985.207 359.754 967.617 327.912 967.617 289.134C967.617 250.355 990.112 232.728 1019.65 232.728C1030.66 232.549 1041.34 236.432 1049.7 243.646V136.976H889.647V232.671C920.655 234.377 953.242 245.749 953.467 296.582C953.467 344.288 912.819 363.791 884.63 363.791H828.251V360.379H829.943C830.762 360.362 831.57 360.177 832.317 359.835C833.063 359.493 833.732 359.001 834.284 358.389C835.679 356.969 836.874 355.361 837.836 353.613C838.813 351.83 839.535 349.915 839.978 347.927C840.393 346.059 840.619 344.154 840.655 342.241V254.676C840.615 252.763 840.389 250.859 839.978 248.99C839.526 247.005 838.805 245.092 837.836 243.304C836.873 241.573 835.678 239.985 834.284 238.585C833.733 237.968 833.065 237.469 832.319 237.117C831.573 236.765 830.765 236.568 829.943 236.538H828.251V233.183H860.387V349.178H882.938C904.475 349.178 929.901 331.267 929.901 297.151C929.901 263.035 904.475 240.291 879.781 240.291H869.915V136.976H735.396V342.241C735.414 344.154 735.641 346.061 736.072 347.927C736.516 349.915 737.237 351.829 738.215 353.613C739.176 355.361 740.371 356.968 741.767 358.389C742.318 359.001 742.987 359.493 743.734 359.835C744.48 360.177 745.288 360.362 746.108 360.379L747.799 360.379V363.791H703.26V360.379H704.952C705.771 360.362 706.579 360.177 707.326 359.835C708.072 359.493 708.741 359.001 709.293 358.389C710.688 356.969 711.883 355.362 712.845 353.613C713.822 351.83 714.544 349.915 714.987 347.927C715.402 346.059 715.628 344.154 715.664 342.241V243.987C696.684 245.449 678.953 254.088 666.021 268.175C653.09 282.261 645.911 300.755 645.924 319.952V343.321C645.985 344.926 646.174 346.523 646.488 348.097C646.982 350.078 647.721 351.988 648.686 353.783C649.649 355.514 650.844 357.103 652.238 358.503C652.785 359.125 653.452 359.628 654.199 359.98C654.945 360.332 655.755 360.526 656.579 360.55H658.271V363.961H613.675V360.266H615.31C616.143 360.243 616.962 360.049 617.718 359.697C618.474 359.346 619.151 358.842 619.708 358.219C621.102 356.818 622.298 355.23 623.26 353.499C624.229 351.712 624.95 349.799 625.402 347.813C625.813 345.945 626.039 344.04 626.079 342.127V322.795C625.798 304.62 630.966 286.783 640.906 271.621C638.312 264.914 633.682 259.207 627.677 255.316C621.672 251.425 614.6 249.549 607.474 249.957C594.507 249.957 574.662 260.306 573.647 290.498C572.959 317.848 579.809 344.854 593.436 368.51C593.772 369.127 593.888 369.841 593.764 370.534C593.64 371.226 593.284 371.855 592.756 372.314C592.228 372.774 591.559 373.036 590.862 373.058C590.164 373.08 589.481 372.859 588.926 372.434C573.14 359.754 555.55 327.912 555.55 289.134C555.55 250.355 578.045 232.728 607.53 232.728C616.484 232.806 625.243 235.373 632.843 240.149C640.442 244.924 646.588 251.722 650.603 259.794C667.921 242.506 691.298 232.802 715.664 232.785V136.976H482.258V242.849C462.469 242.565 441.722 258.088 431.517 282.367C418.945 312.332 427.12 344.515 449.84 354.238C472.561 363.961 501.257 347.472 513.829 317.507C526.402 287.542 518.058 255.359 495.507 245.636C494.965 245.397 494.424 245.219 493.883 245.042C493.522 244.924 493.161 244.805 492.8 244.669C488.177 243.816 487.501 238.13 492.8 238.13C530.348 241.883 551.434 291.692 536.437 327.571C533.05 336.265 527.97 344.187 521.498 350.869C515.025 357.551 507.291 362.857 498.751 366.475C490.212 370.093 481.041 371.949 471.779 371.933C462.516 371.917 453.351 370.031 444.824 366.384C436.297 362.737 428.58 357.404 422.13 350.701C415.68 343.997 410.626 336.058 407.268 327.352C403.91 318.646 402.315 309.35 402.578 300.013C402.84 290.675 404.955 281.485 408.797 272.985C413.363 262.126 420.737 252.703 430.149 245.701C439.561 238.699 450.664 234.376 462.3 233.183V136.976H358.008C354.818 164.263 342.619 189.839 323.159 209.456C300.35 232.448 269.431 245.378 237.182 245.408ZM145.503 141.153C145.229 139.764 144.987 138.371 144.776 136.976H329.588C328.643 143.228 327.077 149.361 324.918 155.285H149.446C147.777 150.704 146.455 145.98 145.503 141.153ZM314.904 175.137C316.723 172.391 318.391 169.56 319.906 166.657H154.458C158.811 175 164.403 182.684 171.085 189.423C184.158 202.607 200.814 211.586 218.946 215.224C237.078 218.861 255.873 216.994 272.953 209.859C290.034 202.723 304.633 190.64 314.904 175.137ZM329.573 108.546H144.776C145.705 102.403 147.237 96.3458 149.364 90.4644H324.967C327.084 96.3035 328.631 102.359 329.573 108.546ZM319.98 79.0924H154.34C161.576 65.1302 172.189 53.177 185.25 44.375C200.622 34.016 218.695 28.487 237.182 28.487C261.964 28.517 285.722 38.4591 303.246 56.1324C310.006 62.9505 315.626 70.7044 319.98 79.0924ZM985.771 289.475C987.293 260.135 1006.74 249.957 1019.6 249.957C1025.51 249.657 1031.4 250.928 1036.67 253.642C1041.94 256.356 1046.42 260.418 1049.65 265.423V289.475H985.771Z" fill="url(#logo-grad)"/>
+      <defs>
+        <linearGradient id="logo-grad" x1="654.578" y1="26.7319" x2="983.141" y2="355.295" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#EAB79C"/>
+          <stop offset="1" stop-color="#D6A3C7"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="eyebrow">Digital assets · DeFi · Infrastructure</p>
+    <h1>Blockchain <span class="yellow">infrastructure</span><br>for <span class="purple">institutional</span> standards.</h1>
+    <p class="hero-sub">Designing tokenization and custody infrastructure where regulated finance meets blockchain.</p>
+  </div>
+
+  <!-- PROJECTS -->
+  <section>
+    <p class="section-label">Projects</p>
+    <div class="proj-grid">
+
+      <div class="proj-card" onclick="this.classList.toggle('open')">
+        <div class="proj-tags">
+          <span class="tag tag-green">Solana · Mainnet</span>
+        </div>
+        <div class="proj-header">
+          <p class="proj-title">Nevermore DEX</p>
+          <span class="expand-icon">+</span>
+        </div>
+        <p class="proj-short">Fixed-income yield curve for stablecoins on Solana. T-bill mechanics, on-chain.</p>
+        <div class="proj-expanded">
+          <p class="proj-long">Nevermore applies traditional fixed-income term structure to DeFi stablecoin liquidity. Liquidity providers lock USDC into 1, 5, or 20-day fixed-term positions and earn guaranteed annualized yields — longer commitments earn higher rates, exactly as a yield curve would predict. The protocol uses a DCF model to price each term's yield, creating an interest rate term structure modeled on fixed-income principles where yield increases with duration.</p>
+          <p class="proj-meta">Rust · Solana · Built solo</p>
+        </div>
+      </div>
+
+      <div class="proj-card" onclick="this.classList.toggle('open')">
+        <div class="proj-tags">
+          <span class="tag tag-purple">TON Blockchain</span>
+          <span class="tag tag-yellow">Hackathon Winner</span>
+        </div>
+        <div class="proj-header">
+          <p class="proj-title">Optus DEX</p>
+          <span class="expand-icon">+</span>
+        </div>
+        <p class="proj-short">DEX aggregator on TON with best-execution routing, gasless transactions, and on-chain analytics.</p>
+        <div class="proj-expanded">
+          <p class="proj-long">Optus aggregates liquidity across decentralized exchanges on the TON blockchain, routing orders to deliver best-execution pricing and minimize slippage. Large orders are split across multiple venues to maximize price efficiency — similar to smart order routing in traditional markets. The protocol removes gas friction, making execution seamless for any trader type. Built above the DEX layer, Optus includes an analytics dashboard tracking live liquidity pool positions, trading volume, and on-chain activity across the TON network.</p>
+          <div class="proj-links">
+            <a href="#" class="proj-link">📄 Press coverage</a>
+            <a href="#" class="proj-link yellow">🏆 3rd place · 30K TON + AWS</a>
+          </div>
+          <p class="proj-meta">PM Lead & Co-founder · team of 5–10</p>
+        </div>
+      </div>
+
+      <div class="proj-card" onclick="this.classList.toggle('open')">
+        <div class="proj-tags">
+          <span class="tag tag-purple">Ethereum · USDC</span>
+          <span class="tag tag-purple">Tokenization</span>
+        </div>
+        <div class="proj-header">
+          <p class="proj-title">Pre-IPO Tokenization Platform</p>
+          <span class="expand-icon">+</span>
+        </div>
+        <p class="proj-short">Private placement infrastructure digitizing syndicate workflows, settlement, and investor reporting on-chain.</p>
+        <div class="proj-expanded">
+          <p class="proj-long">Private market syndication infrastructure powered by tokenization. Fund managers tokenize investor allocations, automate settlement and reconciliation workflows via atomic settlement, and deliver real-time portfolio visibility — without restructuring the underlying legal framework. Investor capital settles in USDC, triggering restricted token issuance mapped to each allocation. At liquidity event, tokens are redeemed and proceeds distributed — creating a fully auditable investment lifecycle across pre-IPO syndicate deals.</p>
+          <p class="proj-meta">Architect & PM · Ethereum / USDC</p>
+        </div>
+      </div>
+
+      <div class="proj-card" onclick="this.classList.toggle('open')">
+        <div class="proj-tags">
+          <span class="tag tag-yellow">Research</span>
+          <span class="tag tag-green">Valuation</span>
+        </div>
+        <div class="proj-header">
+          <p class="proj-title">Layer 1 Blockchain Valuation</p>
+          <span class="expand-icon">+</span>
+        </div>
+        <p class="proj-short">Institutional-grade valuation framework for Layer 1 blockchains combining traditional finance methods.</p>
+        <div class="proj-expanded">
+          <p class="proj-long">Institutional-grade valuation methodology for Layer 1 blockchains, combining DCF flywheel modeling with Metcalfe's Law applied to on-chain activity data. The framework translates traditional asset management analysis into crypto-native fundamentals — enabling rigorous evaluation of blockchain networks as investable assets.</p>
+          <p class="proj-meta">MSF · Johns Hopkins · Financial Modeling & Valuation</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <p class="section-label">What we work with</p>
+    <div class="skill-grid">
+      <div class="skill-group">
+        <p class="skill-group-title">Protocols & Infrastructure</p>
+        <span class="skill-pill">Solana</span>
+        <span class="skill-pill">Ethereum</span>
+        <span class="skill-pill">TON</span>
+        <span class="skill-pill">Smart Contracts</span>
+        <span class="skill-pill">Stablecoins</span>
+        <span class="skill-pill">Tokenization</span>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Operations</p>
+        <span class="skill-pill">Operational Architecture</span>
+        <span class="skill-pill">Reconciliation & Settlement</span>
+        <span class="skill-pill">Digital Asset Infrastructure</span>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Finance & Modeling</p>
+        <span class="skill-pill">DCF</span>
+        <span class="skill-pill">Metcalfe's Law</span>
+        <span class="skill-pill">Fixed Income</span>
+        <span class="skill-pill">L1 Valuation</span>
+        <span class="skill-pill">Yield Modeling</span>
+        <span class="skill-pill">Financial Modeling</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-brand">OMDAO LLC · Wyoming · Est. 2022</span>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/caterineh" target="_blank" class="footer-link">LinkedIn</a>
+
+      <button class="contact-btn" onclick="document.getElementById('modal').classList.add('open')">
+        ✉ Contact us
+      </button>
+    </div>
+  </footer>
+
+  <!-- CONTACT MODAL -->
+  <div class="modal-overlay" id="modal" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="modal">
+      <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕</button>
+      <p class="modal-title">Get in touch.</p>
+      <p class="modal-sub">Open to collaborations, advisory, and roles in digital asset infrastructure.</p>
+      <form id="contact-form" action="https://formspree.io/f/xqeojnpb" method="POST">
+        <div class="field-row">
+          <div class="field">
+            <label class="field-label" for="name">Name</label>
+            <input class="field-input" id="name" name="name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label class="field-label" for="email">Email</label>
+            <input class="field-input" id="email" name="email" type="email" placeholder="you@email.com" required />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label" for="message">Message</label>
+          <textarea class="field-input" id="message" name="message" rows="4" placeholder="What are you working on?" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send message</button>
+      </form>
+      <p class="form-success" id="form-success">✓ Message sent! We'll be in touch soon.</p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') document.getElementById('modal').classList.remove('open');
+    });
+  </script>
+
+</body>
+</html>
